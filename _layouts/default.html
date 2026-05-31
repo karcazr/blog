@@ -13,8 +13,10 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+            <a href="{{ '/' | relative_url }}" title="Home">{{ site.title }}</a>
+            {% if site.tagline != '' %}
             <small>{{ site.tagline }}</small>
+            {% endif %}
           </h3>
         </div>
       </div>
@@ -26,6 +28,6 @@
 
     <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
-    <script src='{{ site.baseurl }}/public/js/script.js'></script>
+    <script src='{{ '/public/js/script.js' | relative_url }}'></script>
   </body>
 </html>

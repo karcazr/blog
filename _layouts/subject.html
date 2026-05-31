@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<div class="page">
+  <h1 class="page-title">{{ page.title }}</h1>
+
+  <div class="posts">
+    {% assign sorted_posts = site.posts | sort: "order" | reverse %}
+    {% assign has_posts = false %}
+    {% for post in sorted_posts %}
+    {% if post.subject == page.subject or post.tags contains page.subject or post.tags contains page.tag %}
+    {% assign has_posts = true %}
+    {% if post.title %}
+    <div class="post">
+      <h2 class="post-title">
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      </h2>
+
+      <span class="post-date">{{ post.date | date_to_string }}</span>
+      {% if post.subject %}
+      <span class="post-subject">Tag: {{ post.subject }}</span>
+      {% elsif post.tags.size > 0 %}
+      <span class="post-subject">Tag: {{ post.tags | join: ', ' }}</span>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    {% if has_posts == false %}
+    <p>No posts yet.</p>
+    {% endif %}
+  </div>
+</div>

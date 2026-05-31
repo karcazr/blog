@@ -5,23 +5,49 @@ layout: default
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date">{{ page.date | date_to_string }}</span>
+  {% if page.subject %}
+  <span class="post-subject">Tag: {{ page.subject }}</span>
+  {% elsif page.tags.size > 0 %}
+  <span class="post-subject">Tag: {{ page.tags | join: ', ' }}</span>
+  {% endif %}
+  <hr>
   {{ content }}
 </div>
 
-{% if site.related_posts.size >= 1 %}
-<div class="related">
-  <h2>Related posts</h2>
-  <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <h3>
-          <a href="{{ site.baseurl }}{{ post.url }}">
-            {{ post.title }}
-            <small>{{ post.date | date_to_string }}</small>
-          </a>
-        </h3>
-      </li>
-    {% endfor %}
-  </ul>
-</div>
+{% assign ordered_posts = site.posts | sort: "order" | reverse %}
+{% assign previous_post = nil %}
+{% assign next_post = nil %}
+{% for post in ordered_posts %}
+  {% if post.url == page.url %}
+    {% unless forloop.first %}
+      {% assign next_index = forloop.index0 | minus: 1 %}
+      {% assign next_post = ordered_posts[next_index] %}
+    {% endunless %}
+    {% unless forloop.last %}
+      {% assign previous_index = forloop.index0 | plus: 1 %}
+      {% assign previous_post = ordered_posts[previous_index] %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+{% if previous_post or next_post %}
+<nav class="post-nav">
+  {% if previous_post %}
+  <a class="post-nav-item post-nav-previous" href="{{ previous_post.url | relative_url }}">
+    <span>Previous</span>
+    {{ previous_post.title }}
+  </a>
+  {% else %}
+  <span class="post-nav-item"></span>
+  {% endif %}
+
+  {% if next_post %}
+  <a class="post-nav-item post-nav-next" href="{{ next_post.url | relative_url }}">
+    <span>Next</span>
+    {{ next_post.title }}
+  </a>
+  {% else %}
+  <span class="post-nav-item"></span>
+  {% endif %}
+</nav>
 {% endif %}
