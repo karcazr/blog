@@ -74,7 +74,7 @@ Salam has said this is Lebanon's only route away from the conflict, but Hezbolla
 Lebanon was drawn into the war between the US and Israel on one side, and Iran on the other, on 2 March, when Hezbollah launched rockets into Israel in ==retaliation== for an Israeli strike that killed Iran's Supreme Leader Ali Khamenei. Israel responded with an air campaign across Lebanon and a ground invasion.
 
 
-# Vocabulary
+# Vocabulary(30)
 
 | Word | Definition | Translation |
 |------|------------|-------------|
