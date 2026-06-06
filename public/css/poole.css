@@ -241,6 +241,16 @@ table {
   border: 1px solid #e5e5e5;
   border-collapse: collapse;
 }
+
+.answer-table {
+  table-layout: fixed;
+}
+
+.answer-table th,
+.answer-table td {
+  width: 50%;
+}
+
 td,
 th {
   padding: .25rem .5rem;

@@ -349,6 +349,15 @@ mark {
   color: inherit;
 }
 
+.answer-table {
+  table-layout: fixed;
+}
+
+.answer-table th,
+.answer-table td {
+  width: 50%;
+}
+
 .post-nav {
   display: grid;
   gap: 1rem;
